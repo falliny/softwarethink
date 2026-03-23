@@ -1,0 +1,186 @@
+#####2588번######
+
+A = int(input())
+B = int(input())
+
+a = A * (B % 10)
+b = A * ((B % 100 - B % 10) // 10)
+c = A * (B // 100)
+
+print(a)
+print(b)
+print(c)
+print(A * B)
+
+## aa = a
+## bb = b * 10
+## cc = c * 100
+## print(aa + bb + cc)
+
+
+#####1212번#####
+
+A = input()
+print(bin(int(A, 8))[2:])
+
+
+#####1252번#####
+
+A, B = input().split()
+a = int(A, 2)
+b = int(B, 2)
+
+print(bin(a + b)[2:])
+
+
+#####1271번#####
+
+n, m = map(int, input().split())
+
+print(n // m)
+print(n % m)
+
+
+#####1373번#####
+
+A = input()
+a = int(A, 2)
+
+print(oct(a)[2:])
+
+
+#####2455번#####
+
+a, b = map(int, input().split())
+c, d = map(int, input().split())
+e, f = map(int, input().split())
+g, h = map(int, input().split())
+
+## A = b - c + d 한번에 식을 같이 하니까 최댓값 후보가 적음.
+## B = A - d + e
+## C = B - g + h
+
+A = b - c
+B = A + d
+C = B - e
+D = C + f
+E = D - g
+F = E + h
+
+print(max(A, B, C, D, E, F))
+
+
+#####2530번#####
+
+A, B, C = map(int, input().split())
+D = int(input())
+
+C += D
+B += C // 60
+C %= 60
+A += B // 60
+B %= 60
+A %= 24
+
+print(A, B, C)
+
+
+#####2903번#####
+
+N = int(input())
+
+t = 2
+
+for i in range(N):
+    t = t * 2 - 1
+
+print(t * t)
+
+
+#####1330번#####
+
+A, B = map(int, input().split())
+
+if A > B:
+    print('>')
+elif A < B:
+    print('<')
+else:
+    print('==')
+
+
+#####9498번#####
+
+score = int(input())
+
+if 89 < score <= 100:
+    print('A')
+elif 79 < score < 90:
+    print('B')
+elif 69 < score < 80:
+    print('C')
+elif 59 < score < 70:
+    print('D')
+else:
+    print('F')
+
+
+#####2753번#####
+
+year = int(input())
+
+if year % 4 == 0 and year % 100 != 0:
+    print('1')
+elif year % 400 == 0:
+    print('1')
+else:
+    print('0')
+
+
+#####14681번#####
+
+x = int(input())
+y = int(input())
+
+if x > 0 and y > 0:
+    print('1')
+elif x < 0 and y > 0:
+    print('2')
+elif x < 0 and y < 0:
+    print('3')
+elif x > 0 and y < 0:
+    print('4')
+
+
+#####2490번#####
+
+for _ in range(3):
+    arr = list(map(int, input().split()))
+    z = arr.count(0)
+
+    if z == 1:
+        print('A')
+    elif z == 2:
+        print('B')
+    elif z == 3:
+        print('C')
+    elif z == 4:
+        print('D')
+    else:
+        print('E')
+
+
+#####2839번#####
+
+N = int(input())
+count = 0
+
+while N >= 0:
+    if N % 5 == 0:
+        count += N // 5
+        print(count)
+        break
+    N -= 3
+    count += 1
+else:
+    print(-1)
