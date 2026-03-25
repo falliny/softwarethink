@@ -1,0 +1,176 @@
+#####10950번######
+
+T = int(input())
+
+for i in range(T):
+    A, B = map(int, input().split())
+    print(A + B)
+
+
+#####2741번######
+
+N = int(input())
+
+for i in range(1, N + 1):
+    print(i)
+
+
+#####2742번######
+
+N = int(input())
+
+for i in range(N, 0, -1):
+    print(i)
+
+
+#####11021번######
+
+T = int(input())
+
+for i in range(1, T + 1):
+    A, B = map(int, input().split())
+    print(f'Case #{i}: {A + B}')
+
+
+#####11022번######
+
+T = int(input())
+
+for i in range(1, T + 1):
+    A, B = map(int, input().split())
+    print(f'Case #{i}: {A} + {B} = {A + B}')
+
+
+#####10871번######
+
+N, X = map(int, input().split())
+A = list(map(int, input().split()))
+
+for i in A:
+    if i < X:
+        print(i, end=' ')
+
+
+#####2153번######
+
+word = input()
+total = 0
+
+for ch in word:
+    if ch.islower():
+        value = ord(ch) - ord('a') + 1
+        total += value
+    else:
+        value = ord(ch) - ord('A') + 27
+        total += value
+
+is_prime = True
+
+if total != 1:
+    for i in range(2, total):
+        if total % i == 0:
+            is_prime = False
+            break
+
+if is_prime:
+    print("It is a prime word.")
+else:
+    print("It is not a prime word.")
+
+
+#####2438번######
+
+N = int(input())
+
+for i in range(1, N + 1):
+    print("*" * i)
+
+
+#####2439번######
+
+N = int(input())
+
+for i in range(1, N + 1):
+    print(" " * (N - i) + "*" * i)
+
+
+#####10952번######
+
+while True:
+    A, B = map(int, input().split())
+    if A == 0 and B == 0:
+        break
+    print(A + B)
+
+
+#####2739번######
+
+N = int(input())
+
+for i in range(1, 10):
+    print(N, "*", i, "=", N * i)
+
+
+#####13410번######
+
+N, K = map(int, input().split())
+
+T = 0
+
+for i in range(1, K + 1):
+    t = int(str(N * i)[::-1])
+    T = max(T, t)
+
+print(T)
+
+
+#####2523번######
+
+N = int(input())
+
+for i in range(1, N):
+    print("*" * i)
+
+for i in range(N, 0, -1):
+    print("*" * i)
+
+
+#####2446번######
+
+N = int(input())
+
+for i in range(N):
+    print(" " * i + "*" * (2 * N - 1 - 2 * i))
+
+for i in range(N - 2, -1, -1):
+    print(" " * i + "*" * (2 * N - 1 - 2 * i))
+
+
+#####10996번######
+
+N = int(input())
+
+for i in range(2 * N):
+    if i % 2 == 0:
+        print(("* " * ((N + 1) // 2)).rstrip())
+    else:
+        print((" *" * (N // 2)).rstrip())
+
+
+#####1110번######
+
+N = int(input())
+
+start = N
+count = 0
+
+while True:
+    a = N // 10
+    b = N % 10
+    N = b * 10 + (a + b) % 10
+    count += 1
+
+    if N == start:
+        break
+
+print(count)
