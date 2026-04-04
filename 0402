@@ -1,0 +1,141 @@
+#####10818번#####
+N = int(input())
+numbers = list(map(int, input().split()))
+
+print(min(numbers), max(numbers))
+
+
+#####2562번#####
+numbers = []
+
+for _ in range(9):
+    numbers.append(int(input()))
+
+a = max(numbers)
+b = numbers.index(a) + 1
+
+print(a)
+print(b)
+
+
+#####8958번#####
+N = int(input())
+
+for _ in range(N):
+    ch = input()
+    A = 0
+    total = 0
+
+    for x in ch:
+        if x == 'O':
+            A += 1
+            total += A
+        else:
+            A = 0
+
+    print(total)
+
+
+#####4344번#####
+C = int(input())
+
+for _ in range(C):
+    N = list(map(int, input().split()))
+    people = N[0]
+    scores = N[1:]
+
+    avg = sum(scores) / people
+    count = 0
+
+    for score in scores:
+        if score > avg:
+            count += 1
+
+    percent = count / people * 100
+    print(f"{percent:.3f}%")
+
+
+#####3052번#####
+num = []
+
+for _ in range(10):
+    a = int(input())
+    num.append(a % 42)
+
+print(len(set(num)))
+
+
+#####10773번#####
+K = int(input())
+num = []
+
+for _ in range(K):
+    x = int(input())
+    if x != 0:
+        num.append(x)
+    else:
+        num.pop()
+
+print(sum(num))
+
+
+#####9012번#####
+T = int(input())
+
+for _ in range(T):
+    s = input()
+    stack = []
+    ok = True
+
+    for ch in s:
+        if ch == '(':
+            stack.append(ch)
+        else:
+            if len(stack) == 0:
+                ok = False
+                break
+            stack.pop()
+
+    if len(stack) == 0 and ok:
+        print("YES")
+    else:
+        print("NO")
+
+
+#####2750번#####
+N = int(input())
+a = []
+
+for _ in range(N):
+    x = int(input())
+    a.append(x)
+
+a.sort()
+
+for num in a:
+    print(num)
+
+
+#####2959번#####
+A, B, C, D = map(int, input().split())
+
+num = [A, B, C, D]
+num.sort()
+
+print(num[0] * num[2])
+
+
+#####2399번#####
+n = int(input())
+x = list(map(int, input().split()))
+
+x.sort()
+
+prefix = 0
+total = 0
+
+for i in range(n):
+    total += x[i] * i - prefix
+    prefix += x[i]
+
+print(total * 2)
