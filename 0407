@@ -1,0 +1,92 @@
+#####7785번######
+
+n = int(input())
+people = set()
+
+for _ in range(n):
+    name, state = input().split()
+    if state == "enter":
+        people.add(name)
+    else:
+        people.remove(name)
+
+for name in sorted(people, reverse=True):
+    print(name)
+
+
+#####1764번######
+
+N, M = map(int, input().split())
+a = set()
+li = []
+
+for _ in range(N):
+    name = input()
+    a.add(name)
+
+for _ in range(M):
+    name = input()
+    if name in a:
+        li.append(name)
+
+li.sort()
+
+print(len(li))
+
+for name in li:
+    print(name)
+
+
+#####1302번######
+
+N = int(input())
+books = {}
+
+for _ in range(N):
+    title = input()
+    if title in books:
+        books[title] += 1
+    else:
+        books[title] = 1
+
+best_title = ""
+best_count = 0
+
+for title in books:
+    count = books[title]
+
+    if count > best_count:
+        best_count = count
+        best_title = title
+    elif count == best_count:
+        if title < best_title:
+            best_title = title
+
+print(best_title)
+
+
+#####10816번######
+
+N = int(input())
+cards = list(map(int, input().split()))
+
+count = {}
+
+for card in cards:
+    if card in count:
+        count[card] += 1
+    else:
+        count[card] = 1
+
+M = int(input())
+targets = list(map(int, input().split()))
+
+result = []
+
+for x in targets:
+    if x in count:
+        result.append(str(count[x]))
+    else:
+        result.append("0")
+
+print(" ".join(result))
