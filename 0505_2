@@ -1,0 +1,26 @@
+import random
+
+n = int(input())
+
+def MatrixFill(mat):
+    for i in range(n):
+        for j in range(n):
+            mat[i][j] = random.randrange(1, n*n*10)
+
+def MatrixPrint(mat):
+    for i in range(n):
+        for j in range(n):
+            print(f"{mat[i][j]:5d}", end=' ')
+        print()
+
+A, At = [[[0]*n for i in range(n)] for i in range(2)]
+
+MatrixFill(A)
+
+for i in range(n):
+    for j in range(n):
+        At[j][i] = A[i][j]
+
+MatrixPrint(A)
+print()
+MatrixPrint(At)
