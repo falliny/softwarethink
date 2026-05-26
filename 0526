@@ -1,12 +1,13 @@
+#####1
 import os
 
-# 검색할 경로 ("." 는 현재 폴더를 의미)
 path = "."
 
 with os.scandir(path) as entries:
     for entry in entries:
         print(entry.name)
 
+#####2
 import os
 
 path = "."
@@ -19,4 +20,3 @@ with os.scandir(path) as entries:
             count += 1
 
 print(f"\n총 {count}개의 .txt 파일을 찾았습니다.")
-
