@@ -1,22 +1,72 @@
-#####1
 import os
+import hashlib
 
-path = "."
+def get_files_info(directory):
+    files_info = {}
+    with os.scandir(directory) as entries:
+        for entry in entries:
+            if entry.is_file():
+                size = entry.stat().st_size
+                file_hash = get_file_hash(entry.path)
+                files_info[entry.name] = (size, file_hash)
+    return files_info
 
-with os.scandir(path) as entries:
-    for entry in entries:
-        print(entry.name)
 
-#####2
-import os
+def get_file_hash(filepath):
+    hasher = hashlib.md5()
+    with open(filepath, "rb") as f:
+        while chunk := f.read(8192):
+            hasher.update(chunk)
+    return hasher.hexdigest()
 
-path = "."
-count = 0
 
-with os.scandir(path) as entries:
-    for entry in entries:
-        if entry.is_file() and entry.name.endswith(".txt"):
-            print(entry.name)
-            count += 1
+def compare_directories(dir1, dir2):
+    if not os.path.isdir(dir1):
+        print(f"'{dir1}' 디렉토리가 존재하지 않습니다.")
+        return
+    if not os.path.isdir(dir2):
+        print(f"'{dir2}' 디렉토리가 존재하지 않습니다.")
+        return
 
-print(f"\n총 {count}개의 .txt 파일을 찾았습니다.")
+    info1 = get_files_info(dir1)
+    info2 = get_files_info(dir2)
+
+    print(f"\n[{dir1}] 파일 개수: {len(info1)}")
+    print(f"[{dir2}] 파일 개수: {len(info2)}")
+
+    # 2. 파일 개수 비교
+    if len(info1) != len(info2):
+        print("→ 두 디렉토리의 파일 개수가 다릅니다.")
+        return
+    print("→ 파일 개수가 같습니다.\n")
+
+    # 3. 파일 이름/크기/내용 비교
+    all_same = True
+    for name, (size1, hash1) in info1.items():
+        if name not in info2:
+            print(f"[다름] '{name}' 파일이 '{dir2}'에 없습니다.")
+            all_same = False
+            continue
+
+        size2, hash2 = info2[name]
+
+        if size1 != size2:
+            print(f"[다름] '{name}' 크기 차이: {size1} vs {size2}")
+            all_same = False
+        elif hash1 != hash2:
+            print(f"[다름] '{name}' 내용이 다릅니다.")
+            all_same = False
+        else:
+            print(f"[같음] '{name}' (크기 {size1} bytes)")
+
+    print()
+    if all_same:
+        print("두 디렉토리의 모든 파일이 이름/크기/내용까지 동일합니다.")
+    else:
+        print("두 디렉토리에 차이가 있습니다.")
+
+
+if __name__ == "__main__":
+    d1 = input("첫 번째 디렉토리 이름: ").strip()
+    d2 = input("두 번째 디렉토리 이름: ").strip()
+    compare_directories(d1, d2)
